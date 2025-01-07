@@ -13,6 +13,10 @@ func main() {
 	fmt.Println(twoSum(firstExample, firstTarget))
 	fmt.Println(twoSum(secondExample, secondTarget))
 	fmt.Println(twoSum(thirdExample, thirdTarget))
+	fmt.Println("with 2 iterators")
+	fmt.Println(twoSumWithIterators(firstExample, firstTarget))
+	fmt.Println(twoSumWithIterators(secondExample, secondTarget))
+	fmt.Println(twoSumWithIterators(thirdExample, thirdTarget))
 }
 
 func twoSum(nums []int, target int) []int {
@@ -28,4 +32,24 @@ func twoSum(nums []int, target int) []int {
 	}
 
 	return res
+}
+
+func twoSumWithIterators(nums []int, target int) []int {
+	if len(nums) == 2 {
+		return []int{0, 1}
+	}
+
+	left := 0
+	right := len(nums) - 1
+
+	for nums[left] + nums[right] != target {
+		if nums[left] + nums[right] > target {
+			right--
+			continue
+		}
+
+		left++
+	}
+
+	return []int{left, right}
 }
